@@ -5,7 +5,6 @@ const numberOfDrumButtons = drums.length;
 for (let i = 0; i <  numberOfDrumButtons; i ++) {
     drums[i].addEventListener("click", function() {
         const buttonInnerHTML = this.innerHTML;
-
         makeSound(buttonInnerHTML);
         buttonAnimation(buttonInnerHTML);
 
@@ -16,41 +15,34 @@ for (let i = 0; i <  numberOfDrumButtons; i ++) {
 // detecting key press
 
 function makeSound(key) {
+    let fileName = null;
     switch (key) {
         case "w":
-                const tom1 = new Audio("sounds/tom-1.mp3");
-                tom1.play();
+                fileName = "sounds/tom-1.mp3";
             break;
         case "a":
-                const tom2 = new Audio("sounds/tom-2.mp3");
-                tom2.play();
+                fileName = "sounds/tom-2.mp3";
             break;
         case "s":
-                const tom3 = new Audio("sounds/tom-3.mp3");
-                tom3.play();
+                fileName = "sounds/tom-3.mp3";
             break;
         case "d":
-                const tom4 = new Audio("sounds/tom-4.mp3");
-                tom4.play();
+                fileName = "sounds/tom-4.mp3";
             break;
         case "j":
-                const snare = new Audio("sounds/snare.mp3");
-                snare.play();
+                fileName = "sounds/snare.mp3";
             break;
         case "k":
-                const crash = new Audio("sounds/crash.mp3");
-                crash.play();
+                fileName = "sounds/crash.mp3";
             break;
         case "l":
-                const kick = new Audio("sounds/kick-bass.mp3");
-                kick.play();
+                fileName = "sounds/kick-bass.mp3";
             break;
-        default:
-            console.log(buttonInnerHTML);
-
-
     }
-
+    if (fileName != null) {
+        const drum = new Audio(fileName);
+        drum.play();
+    }
 }
 
 document.addEventListener("keypress", function(event) {
@@ -60,8 +52,10 @@ document.addEventListener("keypress", function(event) {
 
 function buttonAnimation(currentKey) {
     const activeButton = document.querySelector("." + currentKey);
-    activeButton.classList.add("pressed");
-    setTimeout(function() {
-        activeButton.classList.remove("pressed");
-    }, 100);
+    if (activeButton != null) {
+        activeButton.classList.add("pressed");
+        setTimeout(function() {
+            activeButton.classList.remove("pressed");
+        }, 100);
+    } 
 }
