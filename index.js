@@ -1,8 +1,9 @@
 // detecting button press
 
-const numberOfDrumButtons = document.querySelectorAll(".drum").length;
+const drums = document.querySelectorAll(".drum");
+const numberOfDrumButtons = drums.length;
 for (let i = 0; i <  numberOfDrumButtons; i ++) {
-    document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+    drums[i].addEventListener("click", function() {
         const buttonInnerHTML = this.innerHTML;
 
         makeSound(buttonInnerHTML);
